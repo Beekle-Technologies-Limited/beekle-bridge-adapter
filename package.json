@@ -1,0 +1,45 @@
+{
+  "name": "beekle-bridge-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Beekle adapter for Bridge fiat and stablecoin transfer orchestration. Bridge settlement is not live in this service.",
+  "author": "Buchi Onwuasoanya (Beekle Technologies Limited)",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && mkdir -p dist/capabilities && cp src/capabilities/route-explorer.snapshot.json dist/capabilities/route-explorer.snapshot.json",
+    "start": "node dist/main.js",
+    "start:dev": "tsx src/main.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src",
+    "test:e2e": "vitest run test --fileParallelism=false",
+    "example:fake": "tsx src/examples/fake-flow.ts"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@nestjs/common": "^12.4.0",
+    "@nestjs/config": "^12.1.1",
+    "@nestjs/core": "^12.4.0",
+    "@nestjs/platform-express": "^12.4.0",
+    "@nestjs/swagger": "^12.1.1",
+    "@nestjs/typeorm": "^12.0.3",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "mysql2": "^3.24.6",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "typeorm": "^1.1.2"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^12.4.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "@types/supertest": "^7.2.1",
+    "supertest": "^7.3.2",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
+  }
+}

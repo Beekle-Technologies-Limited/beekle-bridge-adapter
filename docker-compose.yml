@@ -1,0 +1,42 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-beekle_bridge}
+      MYSQL_USER: ${MYSQL_USER:-beekle}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  app:
+    build: .
+    ports:
+      - "43117:43117"
+    environment:
+      NODE_ENV: development
+      PORT: 43117
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+      DATABASE_USER: ${MYSQL_USER:-beekle}
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      DATABASE_NAME: ${MYSQL_DATABASE:-beekle_bridge}
+      BRIDGE_PROVIDER: fake
+      BRIDGE_ENVIRONMENT: sandbox
+      BRIDGE_ALLOW_PRODUCTION: "false"
+      BRIDGE_BASE_URL: https://api.sandbox.bridge.xyz/v0
+      BRIDGE_API_KEY: ""
+      BRIDGE_WEBHOOK_PUBLIC_KEY: ""
+      COMPLIANCE_VERIFIER: local_demo
+      LOCAL_DEMO_APPROVAL_REFS: ${LOCAL_DEMO_APPROVAL_REFS:-dec_local_demo}
+      DEPOSIT_INSTRUCTION_STORAGE: redacted
+      OPERATOR_API_KEY: ${OPERATOR_API_KEY:?Set OPERATOR_API_KEY}
+      MERCHANT_API_KEYS: ${MERCHANT_API_KEYS:?Set MERCHANT_API_KEYS}
+      RECONCILE_INTERVAL_MS: "0"
+    depends_on:
+      mysql:
+        condition: service_healthy
