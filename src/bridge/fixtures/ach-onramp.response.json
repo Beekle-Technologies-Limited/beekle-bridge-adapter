@@ -1,0 +1,42 @@
+{
+  "id": "00000000-0000-0000-0000-000000000003",
+  "client_reference_id": "client_transfer_id_123",
+  "state": "awaiting_funds",
+  "on_behalf_of": "00000000-0000-0000-0000-000000000001",
+  "amount": "75.0",
+  "developer_fee": "0.0",
+  "source": {
+    "payment_rail": "ach_push",
+    "currency": "usd",
+    "external_account_id": null,
+    "description": "ACH description, if available"
+  },
+  "destination": {
+    "payment_rail": "ethereum",
+    "currency": "usdc",
+    "to_address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+  },
+  "source_deposit_instructions": {
+    "payment_rail": "ach_push",
+    "amount": "75.0",
+    "currency": "usd",
+    "deposit_message": "BVI7depositmessage",
+    "bank_name": "Bank name",
+    "bank_address": "Bank address",
+    "bank_routing_number": "123456789",
+    "bank_account_number": "1234567890",
+    "bank_beneficiary_name": "Bank beneficiary",
+    "bank_beneficiary_address": "Bank beneficiary address"
+  },
+  "receipt": {
+    "initial_amount": "75.0",
+    "developer_fee": "0.0",
+    "exchange_fee": "0.0",
+    "subtotal_amount": "75.0",
+    "gas_fee": "0.0",
+    "final_amount": "75.0",
+    "url": "https://dashboard.bridge.xyz/transaction/00000000-0000-0000-0000-000000000000/receipt/00000000-0000-0000-0000-000000000000"
+  },
+  "created_at": "2020-01-01T00:00:00.000Z",
+  "updated_at": "2020-01-02T00:00:00.000Z"
+}
